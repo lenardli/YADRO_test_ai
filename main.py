@@ -49,7 +49,7 @@ def get_all_links(credentials: Annotated[HTTPBasicCredentials,
         "is_active": url.is_active
     } for url in sorted(urls, key=lambda x: x.is_active, reverse=True)]
 
-    return JSONResponse({
+    return {
         "data": results,
         "meta": {
             "page": page,
@@ -57,7 +57,7 @@ def get_all_links(credentials: Annotated[HTTPBasicCredentials,
             "total": total,
             "total_pages": (total + per_page - 1) // per_page
         }
-    })
+    }
 
 
 @app.get("/stats")
